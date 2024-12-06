@@ -1,4 +1,4 @@
-﻿<Application x:Class="GestaoEmpresa.App"
+<Application x:Class="GestaoEmpresa.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/xaml"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -10,6 +10,7 @@
                 <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Indigo" SecondaryColor="DeepOrange" />
                 <materialDesign:MaterialDesignResources />
             </ResourceDictionary.MergedDictionaries>
+            <!-- Registrando o conversor -->
             <local:EmptyToVisibilityConverter x:Key="EmptyToVisibilityConverter" />
         </ResourceDictionary>
     </Application.Resources>
