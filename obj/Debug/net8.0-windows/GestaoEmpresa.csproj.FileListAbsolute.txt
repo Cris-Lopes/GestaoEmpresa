@@ -1,0 +1,2 @@
+C:\Users\cris_\OneDrive\Documentos\Visual Studio 2022\GestaoEmpresa\obj\Debug\net8.0-windows\GestaoEmpresa.csproj.AssemblyReference.cache
+C:\Users\cris_\OneDrive\Documentos\Visual Studio 2022\GestaoEmpresa\obj\Debug\net8.0-windows\GestaoEmpresa_MarkupCompile.cache
