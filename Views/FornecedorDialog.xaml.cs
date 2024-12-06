@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows;
 using GestaoEmpresa.Data;
 using GestaoEmpresa.Models;
@@ -8,7 +8,7 @@ namespace GestaoEmpresa.Views
 {
     public partial class FornecedorDialog : Window
     {
-        private readonly Fornecedor _fornecedor;
+        private readonly Fornecedor _fornecedor; // Marcado como readonly
         private readonly EmpresaContext _context;
 
         public FornecedorDialog(Fornecedor? fornecedor = null)
@@ -21,6 +21,7 @@ namespace GestaoEmpresa.Views
 
             if (fornecedor != null)
             {
+                // Preencher campos com dados do fornecedor
                 NomeBox.Text = fornecedor.Nome;
                 ContribuinteBox.Text = fornecedor.Contribuinte;
                 CondicoesPagamentoBox.Text = fornecedor.CondicoesPagamento;
@@ -31,10 +32,12 @@ namespace GestaoEmpresa.Views
         {
             try
             {
+                // Validações
                 if (string.IsNullOrWhiteSpace(NomeBox.Text)) throw new Exception("Nome é obrigatório.");
                 if (string.IsNullOrWhiteSpace(ContribuinteBox.Text)) throw new Exception("Contribuinte é obrigatório.");
                 if (string.IsNullOrWhiteSpace(CondicoesPagamentoBox.Text)) throw new Exception("Condições de pagamento são obrigatórias.");
 
+                // Atualizar valores
                 _fornecedor.Nome = NomeBox.Text;
                 _fornecedor.Contribuinte = ContribuinteBox.Text;
                 _fornecedor.CondicoesPagamento = CondicoesPagamentoBox.Text;
