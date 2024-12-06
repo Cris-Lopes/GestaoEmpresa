@@ -1,4 +1,4 @@
-﻿using PdfSharp.Pdf;
+using PdfSharp.Pdf;
 using PdfSharp.Drawing;
 using GestaoEmpresa.Models;
 
@@ -15,29 +15,29 @@ namespace GestaoEmpresa.Utils
             XFont fontNormal = new("Verdana", 10, XFontStyle.Regular);
 
             // Cabeçalho
-            gfx.DrawString($"Fatura #{fatura.Id}", fontTitle, XBrushes.Black, new XRect(0, 20, page.Width, 30), XStringFormats.TopCenter);
-            gfx.DrawString($"Fornecedor: {fornecedorNome}", fontNormal, XBrushes.Black, new XPoint(50, 80));
-            gfx.DrawString($"Data da Fatura: {fatura.DataFatura:dd/MM/yyyy}", fontNormal, XBrushes.Black, new XPoint(50, 100));
-            gfx.DrawString($"Data de Vencimento: {fatura.DataVencimento:dd/MM/yyyy}", fontNormal, XBrushes.Black, new XPoint(50, 120));
-            gfx.DrawString($"Valor Total: {fatura.ValorTotal:C}", fontNormal, XBrushes.Black, new XPoint(50, 140));
+            gfx.DrawString($"Fatura #{fatura.Id}", fontTitle, XBrushes.Black, new XRect(0, XUnit.FromPoint(20).Point, page.Width, 30), XStringFormats.TopCenter);
+            gfx.DrawString($"Fornecedor: {fornecedorNome}", fontNormal, XBrushes.Black, new XPoint(50, XUnit.FromPoint(80).Point));
+            gfx.DrawString($"Data da Fatura: {fatura.DataFatura:dd/MM/yyyy}", fontNormal, XBrushes.Black, new XPoint(50, XUnit.FromPoint(100).Point));
+            gfx.DrawString($"Data de Vencimento: {fatura.DataVencimento:dd/MM/yyyy}", fontNormal, XBrushes.Black, new XPoint(50, XUnit.FromPoint(120).Point));
+            gfx.DrawString($"Valor Total: {fatura.ValorTotal:C}", fontNormal, XBrushes.Black, new XPoint(50, XUnit.FromPoint(140).Point));
 
             // Tabela de Produtos
             int yOffset = 180;
-            gfx.DrawString("Produtos:", fontTitle, XBrushes.Black, new XPoint(50, yOffset));
+            gfx.DrawString("Produtos:", fontTitle, XBrushes.Black, new XPoint(50, XUnit.FromPoint(yOffset).Point));
             yOffset += 30;
 
-            gfx.DrawString("Referência", fontNormal, XBrushes.Black, new XPoint(50, yOffset));
-            gfx.DrawString("Descrição", fontNormal, XBrushes.Black, new XPoint(150, yOffset));
-            gfx.DrawString("Quantidade", fontNormal, XBrushes.Black, new XPoint(350, yOffset));
-            gfx.DrawString("Preço", fontNormal, XBrushes.Black, new XPoint(450, yOffset));
+            gfx.DrawString("Referência", fontNormal, XBrushes.Black, new XPoint(50, XUnit.FromPoint(yOffset).Point));
+            gfx.DrawString("Descrição", fontNormal, XBrushes.Black, new XPoint(150, XUnit.FromPoint(yOffset).Point));
+            gfx.DrawString("Quantidade", fontNormal, XBrushes.Black, new XPoint(350, XUnit.FromPoint(yOffset).Point));
+            gfx.DrawString("Preço", fontNormal, XBrushes.Black, new XPoint(450, XUnit.FromPoint(yOffset).Point));
             yOffset += 20;
 
             foreach (var produto in produtos)
             {
-                gfx.DrawString(produto.ReferenciaArtigo, fontNormal, XBrushes.Black, new XPoint(50, yOffset));
-                gfx.DrawString(produto.Descricao, fontNormal, XBrushes.Black, new XPoint(150, yOffset));
-                gfx.DrawString(produto.Quantidade.ToString(), fontNormal, XBrushes.Black, new XPoint(350, yOffset));
-                gfx.DrawString($"{produto.ValorComIVA:C}", fontNormal, XBrushes.Black, new XPoint(450, yOffset));
+                gfx.DrawString(produto.ReferenciaArtigo, fontNormal, XBrushes.Black, new XPoint(50, XUnit.FromPoint(yOffset).Point));
+                gfx.DrawString(produto.Descricao, fontNormal, XBrushes.Black, new XPoint(150, XUnit.FromPoint(yOffset).Point));
+                gfx.DrawString(produto.Quantidade.ToString(), fontNormal, XBrushes.Black, new XPoint(350, XUnit.FromPoint(yOffset).Point));
+                gfx.DrawString($"{produto.ValorComIVA:C}", fontNormal, XBrushes.Black, new XPoint(450, XUnit.FromPoint(yOffset).Point));
                 yOffset += 20;
             }
 
