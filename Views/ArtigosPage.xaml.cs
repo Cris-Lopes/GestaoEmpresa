@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using GestaoEmpresa.Data;
@@ -41,6 +41,7 @@ namespace GestaoEmpresa.Views
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string searchText = SearchBox.Text.ToLower();
+
             var filteredArtigos = _context.Artigos
                 .Join(_context.Fornecedores,
                       artigo => artigo.FornecedorId,
@@ -55,9 +56,9 @@ namespace GestaoEmpresa.Views
                           artigo.ValorComIVA,
                           NomeFornecedor = fornecedor.Nome
                       })
-                .Where(a => a.Referencia.Contains(searchText) ||
-                            a.Descricao.Contains(searchText) ||
-                            a.NomeFornecedor.Contains(searchText))
+                .Where(a => a.Referencia.ToLower().Contains(searchText) ||
+                            a.Descricao.ToLower().Contains(searchText) ||
+                            a.NomeFornecedor.ToLower().Contains(searchText))
                 .ToList();
 
             ArtigosDataGrid.ItemsSource = filteredArtigos;
@@ -88,9 +89,12 @@ namespace GestaoEmpresa.Views
         {
             if (ArtigosDataGrid.SelectedItem is Artigo artigoSelecionado)
             {
-                _context.Artigos.Remove(artigoSelecionado);
-                _context.SaveChanges();
-                LoadArtigos();
+                if (MessageBox.Show("Tem certeza que deseja remover este artigo?", "Confirmar Remoção", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    _context.Artigos.Remove(artigoSelecionado);
+                    _context.SaveChanges();
+                    LoadArtigos();
+                }
             }
         }
     }
